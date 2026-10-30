@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PageTurner | Online Book Store</title>
+<style>
+:root{--brown:#4c3028;--brown2:#795548;--cream:#fbf7f0;--gold:#d5a45b;--ink:#292321;--muted:#746b65;--white:#fff;--green:#218838;--line:#e8ded2}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:11px 16px;background:var(--brown);color:white;font-weight:700}button:hover{background:var(--brown2)}button.secondary{background:#eee4d8;color:var(--brown)}button.danger{background:#a83232}button.small{padding:7px 10px;font-size:13px}input,select,textarea{padding:11px;border:1px solid #d8cec3;border-radius:8px;width:100%;background:white;color:var(--ink)}label{display:block;font-weight:700;font-size:13px;margin:10px 0 5px}.hidden{display:none!important}.muted{color:var(--muted)}.tiny{font-size:12px}.topbar{background:var(--brown);color:white;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}.brand{font-size:24px;font-weight:800;letter-spacing:.3px}.brand span{color:#f1c77e}.topbar p{margin:5px 0 0;font-size:13px;color:#f4e7dc}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button{background:transparent;border:1px solid #8d7266;padding:9px 12px}.nav button:hover,.nav button.active{background:#795548}.wrap{width:min(1200px,94%);margin:24px auto}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:20px;box-shadow:0 5px 18px #412c160a}.auth-card{max-width:470px;margin:42px auto}.auth-card h1{margin-top:0}.auth-switch{display:flex;gap:8px;margin-bottom:15px}.auth-switch button{flex:1}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.hero{background:linear-gradient(120deg,#3e2822,#77513d);color:white;border-radius:18px;padding:34px;display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:center;margin-bottom:22px}.hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 12px}.hero p{color:#f2e5d8;line-height:1.6}.hero-art{font-size:100px;text-align:center}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:20px 0 14px}.section-head h2{margin:0}.tools{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin-bottom:18px}.book-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px}.book-card{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:white;display:flex;flex-direction:column;min-width:0}.cover{height:155px;background:linear-gradient(140deg,#e9d9c7,#f8eee0);display:flex;align-items:center;justify-content:center;font-size:53px;position:relative;overflow:hidden}.cover img{width:100%;height:100%;object-fit:contain;background:#f7efe5;padding:8px}.cover .cover-fallback{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:53px}.cover .tag{position:absolute;left:8px;top:8px;font-size:10px;background:#fff9;color:var(--brown);padding:5px 7px;border-radius:20px;font-weight:700}.book-info{padding:12px;display:flex;flex-direction:column;gap:7px;flex:1}.book-info h3{font-size:15px;line-height:1.35;margin:0}.book-info .author{font-size:12px;color:var(--muted);min-height:30px}.price{font-weight:800;color:var(--brown);font-size:17px}.book-actions{display:flex;gap:6px;margin-top:auto}.book-actions button{flex:1;padding:8px 6px;font-size:12px}.book-actions .heart{flex:0 0 38px;background:#f1e7dc;color:#7d3e42}.badge{display:inline-block;background:#f5eadc;color:var(--brown);padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{background:#f8f1e8;border-radius:12px;padding:16px}.stat strong{display:block;font-size:24px;margin-bottom:4px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:600px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:middle}th{background:#f5eee6;color:var(--brown)}.qty{width:75px}.row-actions{display:flex;gap:7px;flex-wrap:wrap}.message{padding:11px 13px;border-radius:8px;background:#edf7ee;color:#216e31;margin:12px 0}.error{background:#fff0f0;color:#a22}.total-line{display:flex;justify-content:space-between;gap:15px;padding:8px 0}.total-line.grand{border-top:1px solid var(--line);font-size:20px;font-weight:800;margin-top:5px;padding-top:14px}.two-col{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}.footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}.success-circle{height:86px;width:86px;border-radius:50%;background:#28a745;color:white;font-size:52px;display:grid;place-items:center;margin:5px auto 20px}.center{text-align:center}.empty{text-align:center;padding:35px 10px;color:var(--muted)}.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.admin-tabs button{background:#eee4d8;color:var(--brown)}.admin-tabs button.active{background:var(--brown);color:white}.captcha{display:inline-block;letter-spacing:5px;font-weight:800;font-size:21px;background:#f0e6da;padding:10px 15px;border-radius:7px;font-style:italic}.modal-backdrop{position:fixed;inset:0;background:#0008;display:grid;place-items:center;padding:20px;z-index:10}.modal{background:white;padding:24px;border-radius:15px;width:min(520px,100%);max-height:90vh;overflow:auto}.modal h2{margin-top:0}.pill{border-radius:20px;padding:5px 9px;background:#f3e8dc;font-size:12px}
+@media(max-width:1000px){.book-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.hero-art{display:none}}
+@media(max-width:650px){.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cover{height:125px;font-size:42px}.wrap{width:95%;margin:14px auto}.panel{padding:15px}.topbar{padding:15px 4%}.brand{font-size:21px}.tools,.form-grid,.two-col,.stats{grid-template-columns:1fr}.hero{padding:24px}.book-info{padding:9px}.book-info h3{font-size:13px}.book-actions{flex-wrap:wrap}.book-actions button{font-size:11px}.nav{width:100%}.nav button{flex:1}.auth-card{margin:20px auto}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="brand">📚 Page<span>Turner</span></div><p>Your next favourite book is waiting.</p></div>
+  <nav class="nav hidden" id="mainNav">
+    <button class="active" data-page="home" onclick="showPage('home')">Home</button>
+    <button data-page="catalogue" onclick="showPage('catalogue')">Books</button>
+    <button data-page="wishlist" onclick="showPage('wishlist')">Wishlist <span id="wishCount">0</span></button>
+    <button data-page="orders" onclick="showPage('orders')">My Orders</button>
+    <button data-page="profile" onclick="showPage('profile')">Profile</button>
+    <button data-page="admin" onclick="showPage('admin')">Admin</button>
+    <button onclick="logout()">Logout</button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section id="authPage">
+    <div class="panel auth-card">
+      <div class="auth-switch"><button id="signupTab" onclick="setAuthMode('signup')">Create Account</button><button class="secondary" id="loginTab" onclick="setAuthMode('login')">Login</button></div>
+      <div id="signupForm">
+        <h1>Create your account</h1><p class="muted">Join PageTurner and discover your next read.</p>
+        <form onsubmit="signup(event)">
+          <label>Full name</label><input id="suName" required maxlength="60" placeholder="Enter your name">
+          <label>Username</label><input id="suUser" required minlength="3" maxlength="24" placeholder="Choose a username">
+          <label>Email address</label><input id="suEmail" type="email" required placeholder="you@example.com">
+          <label>Password</label><div style="display:flex;gap:8px"><input id="suPass" type="password" required minlength="4" placeholder="Create a password"><button type="button" class="secondary" onclick="togglePassword('suPass',this)">Show</button></div>
+          <label>Confirm password</label><input id="suConfirm" type="password" required placeholder="Re-enter password">
+          <div style="margin:14px 0"><span class="captcha" id="signupCaptcha">ABC23</span> <button type="button" class="secondary small" onclick="makeCaptcha('signup')">Refresh</button></div>
+          <label>Enter CAPTCHA</label><input id="suCaptchaInput" required placeholder="Type the code shown">
+          <button type="submit" style="width:100%;margin-top:16px">Create Account</button>
+          <p id="signupMsg"></p>
+        </form>
+      </div>
+      <div id="loginForm" class="hidden">
+        <h1>Welcome back</h1><p class="muted">Log in to continue shopping.</p>
+        <form onsubmit="login(event)">
+          <label>Username</label><input id="liUser" required placeholder="Your username">
+          <label>Password</label><div style="display:flex;gap:8px"><input id="liPass" type="password" required placeholder="Your password"><button type="button" class="secondary" onclick="togglePassword('liPass',this)">Show</button></div>
+          <div style="margin:14px 0"><span class="captcha" id="loginCaptcha">XYZ67</span> <button type="button" class="secondary small" onclick="makeCaptcha('login')">Refresh</button></div>
+          <label>Enter CAPTCHA</label><input id="liCaptchaInput" required placeholder="Type the code shown">
+          <button type="submit" style="width:100%;margin-top:16px">Login</button>
+          <p id="loginMsg"></p>
+          <p class="tiny muted">Demo admin login: <b>admin</b> / <b>admin123</b></p>
+        </form>
+      </div>
+      <p class="tiny muted">Student project demo: accounts and orders are stored only in this browser. Do not use a real password.</p>
+    </div>
+  </section>
+
+  <section id="appPage" class="hidden">
+    <section id="homePage">
+      <div class="hero"><div><span class="badge">A LITTLE WORLD INSIDE EVERY BOOK</span><h1>Find a story worth staying up for.</h1><p>Explore chilling horror, inspiring lives, Indian epics, spiritual classics and popular fiction — all in one place.</p><button onclick="showPage('catalogue')">Explore 50+ Books →</button></div><div class="hero-art">📚✨</div></div>
+      <div class="stats"><div class="stat"><strong id="statBooks">50</strong><span>Books to explore</span></div><div class="stat"><strong id="statCategories">7</strong><span>Categories</span></div><div class="stat"><strong id="statOrders">0</strong><span>Your orders</span></div></div>
+      <div class="section-head"><h2>Featured reads</h2><button class="secondary" onclick="showPage('catalogue')">View all books</button></div>
+      <div class="book-grid" id="featuredGrid"></div>
+    </section>
+    <section id="cataloguePage" class="hidden">
+      <div class="section-head"><div><h2>Book Catalogue</h2><p class="muted">Search, filter and add books to your cart.</p></div><button onclick="showPage('cart')">🛒 Cart (<span id="cartCount">0</span>)</button></div>
+      <div class="tools"><input id="searchBox" placeholder="Search title or author..." oninput="renderCatalogue()"><select id="categoryFilter" onchange="renderCatalogue()"><option value="">All categories</option></select><select id="sortFilter" onchange="renderCatalogue()"><option value="title">Sort: Title A–Z</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option></select></div>
+      <div class="book-grid" id="catalogueGrid"></div>
+      <p id="catalogueEmpty" class="empty hidden">No books found. Try a different search.</p>
+    </section>
+    <section id="cartPage" class="hidden">
+      <div class="section-head"><h2>🛒 Your Shopping Cart</h2><button class="secondary" onclick="showPage('catalogue')">Continue shopping</button></div>
+      <div class="panel"><div id="cartContents"></div><div id="cartSummary" class="hidden"><div class="total-line"><span>Subtotal</span><b id="cartSubtotal"></b></div><div class="total-line"><span>Delivery</span><b id="cartDelivery"></b></div><div class="total-line grand"><span>Total</span><span id="cartTotal"></span></div><button onclick="showPage('checkout')" style="width:100%;margin-top:14px">Proceed to Checkout</button></div></div>
+    </section>
+    <section id="checkoutPage" class="hidden">
+      <div class="section-head"><h2>Delivery & Checkout</h2></div>
+      <div class="two-col"><div class="panel"><form onsubmit="placeOrder(event)">
+        <div class="form-grid"><div><label>Full name</label><input id="coName" required></div><div><label>Mobile number</label><input id="coPhone" type="tel" pattern="[6-9][0-9]{9}" maxlength="10" required placeholder="10-digit number"></div><div><label>Email</label><input id="coEmail" type="email" required></div><div><label>PIN code</label><input id="coPin" pattern="[0-9]{6}" maxlength="6" required></div></div>
+        <label>Delivery address</label><textarea id="coAddress" rows="3" required placeholder="House number, street, area"></textarea>
+        <div class="form-grid"><div><label>City</label><input id="coCity" required></div><div><label>State</label><input id="coState" value="Telangana" required></div></div>
+        <label>Payment method</label><div class="panel" style="background:#fbf7f0;padding:13px;margin:8px 0"><b>💵 Cash on Delivery (COD)</b><p class="muted tiny">Pay when your books arrive.</p></div>
+        <button type="submit" style="width:100%">Place Order</button>
+      </form></div><div class="panel"><h3>Order summary</h3><div id="checkoutSummary"></div></div></div>
+    </section>
+    <section id="confirmationPage" class="hidden"><div class="panel center"><div class="success-circle">✓</div><h1>Order placed successfully!</h1><p class="muted">Thank you for shopping with PageTurner.</p><div id="confirmationDetails" class="details"></div><h3>Books ordered</h3><div class="table-wrap"><table><thead><tr><th>Book</th><th>Qty</th><th>Amount</th></tr></thead><tbody id="confirmationItems"></tbody></table></div><h2 id="confirmationTotal"></h2><button onclick="window.print()" class="secondary">Print receipt</button> <button onclick="showPage('catalogue')">Continue shopping</button></div></section>
+    <section id="wishlistPage" class="hidden"><div class="section-head"><h2>♡ Your Wishlist</h2></div><div id="wishlistGrid" class="book-grid"></div><p id="wishlistEmpty" class="empty hidden">Your wishlist is empty. Tap ♡ on a book to save it.</p></section>
+    <section id="ordersPage" class="hidden"><div class="section-head"><h2>My Orders</h2></div><div id="ordersContents"></div></section>
+    <section id="profilePage" class="hidden"><div class="panel" style="max-width:650px"><h2>My Profile</h2><form onsubmit="saveProfile(event)"><label>Full name</label><input id="profileName" required><label>Email</label><input id="profileEmail" type="email" required><label>Username</label><input id="profileUser" disabled><button type="submit" style="margin-top:15px">Save Profile</button><p id="profileMsg"></p></form></div></section>
+    <section id="adminPage" class="hidden"><div class="section-head"><div><h2>Admin Dashboard</h2><p class="muted">Manage catalogue items and view demo orders.</p></div><span class="badge">Demo admin</span></div><div class="panel"><div class="admin-tabs"><button class="active" onclick="adminTab('books',this)">Manage Books</button><button onclick="adminTab('orders',this)">View Orders</button></div><div id="adminBooks"><h3>Add a book</h3><form onsubmit="addBook(event)" class="form-grid"><div><label>Book title</label><input id="newTitle" required></div><div><label>Author</label><input id="newAuthor" required></div><div><label>Category</label><select id="newCategory"></select></div><div><label>Price (₹)</label><input id="newPrice" type="number" min="1" required></div><div><label>Stock quantity</label><input id="newStock" type="number" min="0" value="10" required></div><div style="align-self:end"><button type="submit">Add Book</button></div></form><h3 style="margin-top:25px">Current books</h3><div id="adminBookTable" class="table-wrap"></div></div><div id="adminOrders" class="hidden"></div></div></section>
+    <section id="aboutPage" class="hidden"><div class="panel"><h2>About PageTurner</h2><p>PageTurner is a student-developed online bookstore demo designed to make discovering and ordering books simple. Browse multiple categories, manage a wishlist and place sample Cash on Delivery orders.</p><h3>Contact Us</h3><p>Email: support@pageturner.example</p><p class="tiny muted">Demo contact details — not a live support service.</p></div></section>
+  </section>
+</main>
+<footer class="footer">PageTurner Online Book Store · Student Mini Project · Demo checkout only</footer>
+<div id="bookModal" class="modal-backdrop hidden" onclick="if(event.target===this)closeBookModal()"><div class="modal"><button class="secondary small" style="float:right" onclick="closeBookModal()">Close ✕</button><div id="bookModalBody"></div></div></div>
+
+<script>
+const CATEGORIES=["Horror & Supernatural","A.P.J. Abdul Kalam","Hindu Scriptures & Philosophy","Indian Mythology","Fiction & Classics","Self-help & Inspiration","Science & Biography"];
+const initialBooks=[
+["B101","Dracula","Bram Stoker","Horror & Supernatural",280,"🧛","Classic gothic horror novel.",12],
+["B102","Frankenstein","Mary Shelley","Horror & Supernatural",250,"⚡","A classic tale of creation and its consequences.",12],
+["B103","The Shining","Stephen King","Horror & Supernatural",399,"🏨","A family faces terrifying events in an isolated hotel.",8],
+["B104","It","Stephen King","Horror & Supernatural",499,"🎈","A group confronts an ancient evil in their town.",7],
+["B105","The Exorcist","William Peter Blatty","Horror & Supernatural",350,"👻","A famous supernatural horror story.",9],
+["B106","The Haunting of Hill House","Shirley Jackson","Horror & Supernatural",299,"🏚️","A psychological ghost story in a mysterious house.",10],
+["B107","The Turn of the Screw","Henry James","Horror & Supernatural",220,"🕯️","A gothic novella about a governess and strange events.",10],
+["B108","The Call of Cthulhu","H. P. Lovecraft","Horror & Supernatural",240,"🐙","Cosmic horror surrounding a mysterious ancient being.",10],
+["B109","Pet Sematary","Stephen King","Horror & Supernatural",380,"⚰️","A horror story about grief and dangerous choices.",6],
+["B110","The Woman in Black","Susan Hill","Horror & Supernatural",260,"🌫️","A chilling ghost story set in a remote village.",8],
+["B111","Wings of Fire","A.P.J. Abdul Kalam & Arun Tiwari","A.P.J. Abdul Kalam",300,"🚀","The autobiography of Dr. A.P.J. Abdul Kalam.",20],
+["B112","Ignited Minds","A.P.J. Abdul Kalam","A.P.J. Abdul Kalam",240,"💡","Ideas for inspiring young people and building a developed India.",15],
+["B113","India 2020","A.P.J. Abdul Kalam & Y. S. Rajan","A.P.J. Abdul Kalam",280,"🇮🇳","A vision for India's development.",12],
+["B114","My Journey","A.P.J. Abdul Kalam","A.P.J. Abdul Kalam",220,"🛤️","Stories and lessons from Kalam's life.",15],
+["B115","Turning Points","A.P.J. Abdul Kalam","A.P.J. Abdul Kalam",260,"📘","Reflections on important moments in Kalam's public life.",10],
+["B116","You Are Born to Blossom","A.P.J. Abdul Kalam & Arun Tiwari","A.P.J. Abdul Kalam",250,"🌱","Thoughts on education and empowering young minds.",10],
+["B117","The Bhagavad Gita","Traditional; translation varies by edition","Hindu Scriptures & Philosophy",199,"🪷","A foundational Hindu philosophical dialogue. Choose a translation or edition.",20],
+["B118","Valmiki Ramayana","Valmiki; translation varies by edition","Hindu Scriptures & Philosophy",450,"🏹","The Sanskrit epic about Rama; editions and translations vary.",12],
+["B119","The Mahabharata","Traditionally attributed to Vyasa","Hindu Scriptures & Philosophy",499,"🛕","The great Indian epic; abridged and complete editions vary.",10],
+["B120","The Upanishads","Ancient sages; translation varies","Hindu Scriptures & Philosophy",299,"🕉️","Philosophical texts exploring reality, self and knowledge.",12],
+["B121","The Vedas","Ancient Vedic tradition; edition varies","Hindu Scriptures & Philosophy",550,"📜","A collection of ancient Hindu sacred texts; edition varies.",7],
+["B122","The Yoga Sutras of Patanjali","Patanjali","Hindu Scriptures & Philosophy",220,"🧘","Classical text on yoga philosophy and practice.",12],
+["B123","The Shiva Purana","Traditional; edition varies","Hindu Scriptures & Philosophy",380,"🔱","A major Purana focused on Shiva traditions.",8],
+["B124","The Vishnu Purana","Traditional; edition varies","Hindu Scriptures & Philosophy",350,"🪔","A major Purana in the Vaishnava tradition.",8],
+["B125","The Srimad Bhagavatam","Traditional; edition varies","Hindu Scriptures & Philosophy",420,"🌺","A major Purana centred on devotion to Vishnu and Krishna.",8],
+["B126","The Dhammapada","Traditional Buddhist text; translation varies","Hindu Scriptures & Philosophy",180,"☸️","A classic collection of Buddhist teachings; included in Indian philosophy.",10],
+["B127","The Immortals of Meluha","Amish Tripathi","Indian Mythology",299,"🔱","A mythological fiction reimagining of Shiva.",15],
+["B128","The Secret of the Nagas","Amish Tripathi","Indian Mythology",320,"🐍","The second book in the Shiva Trilogy.",12],
+["B129","The Oath of the Vayuputras","Amish Tripathi","Indian Mythology",350,"🌪️","The concluding book in the Shiva Trilogy.",10],
+["B130","The Palace of Illusions","Chitra Banerjee Divakaruni","Indian Mythology",330,"👑","The Mahabharata retold through Draupadi's perspective.",12],
+["B131","The Forest of Enchantments","Chitra Banerjee Divakaruni","Indian Mythology",320,"🌳","A retelling of the Ramayana through Sita's perspective.",12],
+["B132","Jaya: An Illustrated Retelling of the Mahabharata","Devdutt Pattanaik","Indian Mythology",450,"🎨","An illustrated retelling of the Mahabharata.",8],
+["B133","The Alchemist","Paulo Coelho","Fiction & Classics",250,"🏜️","A shepherd follows a journey to discover his personal legend.",15],
+["B134","Pride and Prejudice","Jane Austen","Fiction & Classics",220,"🌹","A classic novel about relationships, manners and society.",12],
+["B135","The Kite Runner","Khaled Hosseini","Fiction & Classics",320,"🪁","A novel about friendship, guilt and redemption.",10],
+["B136","The Book Thief","Markus Zusak","Fiction & Classics",350,"📖","A story of a young reader in wartime Germany.",9],
+["B137","To Kill a Mockingbird","Harper Lee","Fiction & Classics",280,"🐦","A classic novel about justice and empathy.",10],
+["B138","The Great Gatsby","F. Scott Fitzgerald","Fiction & Classics",200,"🥂","A classic novel about wealth and the American dream.",12],
+["B139","Harry Potter and the Philosopher's Stone","J. K. Rowling","Fiction & Classics",399,"🪄","A young wizard begins his adventures at Hogwarts.",10],
+["B140","The Little Prince","Antoine de Saint-Exupéry","Fiction & Classics",190,"⭐","A philosophical tale about friendship and seeing with the heart.",12],
+["B141","Atomic Habits","James Clear","Self-help & Inspiration",399,"🎯","Practical ideas for building good habits.",15],
+["B142","The 7 Habits of Highly Effective People","Stephen R. Covey","Self-help & Inspiration",450,"✅","A framework for personal and professional effectiveness.",10],
+["B143","Ikigai","Héctor García & Francesc Miralles","Self-help & Inspiration",299,"🌸","Explores ideas about purpose and a fulfilling life.",12],
+["B144","Think and Grow Rich","Napoleon Hill","Self-help & Inspiration",220,"💭","A classic book on ambition and success.",12],
+["B145","The Power of Now","Eckhart Tolle","Self-help & Inspiration",280,"🌿","A guide to presence and mindfulness.",10],
+["B146","A Brief History of Time","Stephen Hawking","Science & Biography",350,"🌌","An introduction to questions about the universe and time.",10],
+["B147","The Diary of a Young Girl","Anne Frank","Science & Biography",250,"📝","The diary of Anne Frank during the Holocaust.",10],
+["B148","Steve Jobs","Walter Isaacson","Science & Biography",499,"💻","A biography of Apple co-founder Steve Jobs.",8],
+["B149","The Man Who Knew Infinity","Robert Kanigel","Science & Biography",380,"➗","A biography of mathematician Srinivasa Ramanujan.",8],
+["B150","Surely You're Joking, Mr. Feynman!","Richard P. Feynman","Science & Biography",320,"🔬","Memoirs and anecdotes from physicist Richard Feynman.",8]
+];
+let books=initialBooks.map(a=>({code:a[0],title:a[1],author:a[2],category:a[3],price:a[4],emoji:a[5],description:a[6],stock:a[7]}));
+let users=load("pt_users",[]), orders=load("pt_orders",[]), cart=load("pt_cart",{}), wishlist=load("pt_wishlist",[]), currentUser=null, authCaptcha={signup:"",login:""}, lastOrder=null;
+function load(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function money(n){return "₹"+Number(n).toLocaleString("en-IN")}
+function setAuthMode(mode){document.getElementById("signupForm").classList.toggle("hidden",mode!=="signup");document.getElementById("loginForm").classList.toggle("hidden",mode!=="login");document.getElementById("signupTab").classList.toggle("secondary",mode!=="signup");document.getElementById("loginTab").classList.toggle("secondary",mode!=="login");document.getElementById("signupMsg").textContent="";document.getElementById("loginMsg").textContent=""}
+function makeCaptcha(mode){const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";for(let i=0;i<5;i++)s+=chars[Math.floor(Math.random()*chars.length)];authCaptcha[mode]=s;document.getElementById(mode==="signup"?"signupCaptcha":"loginCaptcha").textContent=s}
+function togglePassword(id,btn){let x=document.getElementById(id);x.type=x.type==="password"?"text":"password";btn.textContent=x.type==="password"?"Show":"Hide"}
+function signup(e){
+  e.preventDefault();
+  const name=document.getElementById("suName").value.trim();
+  const username=document.getElementById("suUser").value.trim();
+  const email=document.getElementById("suEmail").value.trim();
+  const pass=document.getElementById("suPass").value;
+  const confirm=document.getElementById("suConfirm").value;
+  const msg=document.getElementById("signupMsg");
+  if(pass!==confirm){msg.className="message error";msg.textContent="Passwords do not match.";return;}
+  if(document.getElementById("suCaptchaInput").value.trim().toUpperCase()!==authCaptcha.signup){msg.className="message error";msg.textContent="Incorrect CAPTCHA. Please try again.";makeCaptcha("signup");return;}
+  if(users.some(u=>u.username.toLowerCase()===username.toLowerCase())){msg.className="message error";msg.textContent="Username already exists. Choose another.";return;}
+  users.push({name,username,email,password:pass});
+  save("pt_users",users);
+  setAuthMode("login");
+  document.getElementById("liUser").value=username;
+  document.getElementById("liPass").value="";
+  document.getElementById("liCaptchaInput").value="";
+  const loginMsg=document.getElementById("loginMsg");
+  loginMsg.className="message";
+  loginMsg.textContent="Account created successfully! Your username is filled in. Enter your password and the new CAPTCHA to log in.";
+  makeCaptcha("login");
+}
+function login(e){e.preventDefault();const username=document.getElementById("liUser").value.trim(),password=document.getElementById("liPass").value,msg=document.getElementById("loginMsg");if(document.getElementById("liCaptchaInput").value.trim().toUpperCase()!==authCaptcha.login){msg.className="message error";msg.textContent="Incorrect CAPTCHA.";makeCaptcha("login");return}let user;if(username==="admin"&&password==="admin123")user={name:"Administrator",username:"admin",email:"admin@pageturner.example",isAdmin:true};else user=users.find(u=>u.username.toLowerCase()===username.toLowerCase()&&u.password===password);if(!user){msg.className="message error";msg.textContent="Invalid username or password.";makeCaptcha("login");return}currentUser=user;document.getElementById("authPage").classList.add("hidden");document.getElementById("appPage").classList.remove("hidden");document.getElementById("mainNav").classList.remove("hidden");document.getElementById("profileName").value=user.name;document.getElementById("profileEmail").value=user.email;document.getElementById("profileUser").value=user.username;document.querySelector('[data-page="admin"]').classList.toggle("hidden",!user.isAdmin);renderAll();showPage("home")}
+function logout(){currentUser=null;document.getElementById("authPage").classList.remove("hidden");document.getElementById("appPage").classList.add("hidden");document.getElementById("mainNav").classList.add("hidden");document.getElementById("liPass").value="";setAuthMode("login");makeCaptcha("login")}
+function showPage(page){if(!currentUser)return;if(page==="admin"&&!currentUser.isAdmin){alert("Admin login required.");return}document.querySelectorAll("#appPage>section").forEach(s=>s.classList.add("hidden"));let el=document.getElementById(page+"Page");if(el)el.classList.remove("hidden");document.querySelectorAll(".nav [data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="catalogue")renderCatalogue();if(page==="cart")renderCart();if(page==="checkout")renderCheckout();if(page==="wishlist")renderWishlist();if(page==="orders")renderOrders();if(page==="admin")renderAdminBooks();if(page==="profile"){document.getElementById("profileName").value=currentUser.name;document.getElementById("profileEmail").value=currentUser.email}window.scrollTo({top:0,behavior:"smooth"})}
+function getBook(code){return books.find(b=>b.code===code)}
+function ownedOrders(){return orders.filter(o=>o.username===currentUser.username)}
+function bookCard(b){return `<article class="book-card"><div class="cover" data-cover-code="${esc(b.code)}"><span class="tag">${esc(b.category)}</span><span class="cover-fallback">${esc(b.emoji||"📘")}</span></div><div class="book-info"><h3>${esc(b.title)}</h3><div class="author">by ${esc(b.author)}</div><div class="price">${money(b.price)}</div><div class="tiny muted">${b.stock>0?`In stock: ${b.stock}`:"Out of stock"}</div><div class="book-actions"><button onclick="addToCart('${esc(b.code)}')" ${b.stock<1?"disabled":""}>Add to cart</button><button class="heart" title="Wishlist" onclick="toggleWish('${esc(b.code)}')">${wishlist.includes(b.code)?"♥":"♡"}</button></div><button class="secondary small" onclick="bookDetails('${esc(b.code)}')">View details</button></div></article>`}
+let coverCache=load("pt_book_covers",{});
+
+
+const specialBookCovers = {
+  "The Shiva Purana":
+    "https://covers.openlibrary.org/b/title/The%20Shiva%20Purana-M.jpg",
+  "The Srimad Bhagavatam":
+    "https://covers.openlibrary.org/b/title/Srimad%20Bhagavatam-M.jpg",
+  "Jaya: An Illustrated Retelling of the Mahabharata":
+    "https://covers.openlibrary.org/b/title/Jaya%20An%20Illustrated%20Retelling%20of%20the%20Mahabharata-M.jpg"
+};
+
+async function loadBookCovers() {
+  const slots = [
+    ...document.querySelectorAll(".cover[data-cover-code]")
+  ];
+
+  for (const slot of slots) {
+    const code = slot.dataset.coverCode;
+    const book = getBook(code);
+
+    if (!book) continue;
+
+    const specialUrl = specialBookCovers[book.title];
+
+    if (specialUrl) {
+      applyBookCover(slot, specialUrl, book);
+      continue;
+    }
+
+    if (slot.dataset.loaded === "1") continue;
+    slot.dataset.loaded = "1";
+
+    if (coverCache[code]) {
+      applyBookCover(slot, coverCache[code], book);
+      continue;
+    }
+
+    try {
+      const response = await fetch(
+        "https://openlibrary.org/search.json?title=" +
+        encodeURIComponent(book.title) +
+        "&author=" + encodeURIComponent(book.author) +
+        "&limit=10"
+      );
+
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      const coverId = data.docs?.find(
+        item => item.cover_i
+      )?.cover_i;
+
+      if (coverId) {
+        const url =
+          "https://covers.openlibrary.org/b/id/" +
+          coverId + "-M.jpg";
+
+        coverCache[code] = url;
+        save("pt_book_covers", coverCache);
+        applyBookCover(slot, url, book);
+      }
+    } catch (error) {
+      console.log("Could not load cover:", book.title);
+    }
+  }
+}
+
+function applyBookCover(slot, url, book) {
+  const oldImage = slot.querySelector("img");
+  if (oldImage && oldImage.src === url) return;
+  if (oldImage) oldImage.remove();
+
+  const img = document.createElement("img");
+  img.alt = "Cover of " + book.title;
+  img.loading = "lazy";
+  img.src = url;
+
+  img.onerror = () => {
+    img.remove();
+    const fallback = slot.querySelector(".cover-fallback");
+    if (fallback) fallback.style.display = "flex";
+  };
+
+  img.onload = () => {
+    const fallback = slot.querySelector(".cover-fallback");
+    if (fallback) fallback.style.display = "none";
+  };
+
+  slot.appendChild(img);
+}
+
+
+function renderCatalogue(){let q=(document.getElementById("searchBox").value||"").toLowerCase(),cat=document.getElementById("categoryFilter").value,sort=document.getElementById("sortFilter").value;let arr=books.filter(b=>(b.title+" "+b.author).toLowerCase().includes(q)&&(!cat||b.category===cat));if(sort==="low")arr.sort((a,b)=>a.price-b.price);else if(sort==="high")arr.sort((a,b)=>b.price-a.price);else arr.sort((a,b)=>a.title.localeCompare(b.title));document.getElementById("catalogueGrid").innerHTML=arr.map(bookCard).join("");document.getElementById("catalogueEmpty").classList.toggle("hidden",arr.length>0);loadBookCovers()}
+function addToCart(code){let b=getBook(code);if(!b||b.stock<1)return;cart[code]=Math.min((cart[code]||0)+1,b.stock);save("pt_cart",cart);updateCounts();if(!document.getElementById("cartPage").classList.contains("hidden"))renderCart()}
+function removeFromCart(code){delete cart[code];save("pt_cart",cart);renderCart();updateCounts()}
+function changeQty(code,val){let b=getBook(code),n=Number(val);if(!Number.isInteger(n)||n<1){delete cart[code]}else cart[code]=Math.min(n,b?.stock??n);save("pt_cart",cart);renderCart();updateCounts()}
+function toggleWish(code){wishlist=wishlist.includes(code)?wishlist.filter(x=>x!==code):[...wishlist,code];save("pt_wishlist",wishlist);updateCounts();renderCatalogue();renderWishlist();renderFeatured()}
+function updateCounts(){document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById("wishCount").textContent=wishlist.length;document.getElementById("statOrders").textContent=ownedOrders().length}
+function renderCart(){let items=Object.entries(cart).filter(([code,q])=>getBook(code)&&q>0);const el=document.getElementById("cartContents"),summary=document.getElementById("cartSummary");if(!items.length){el.innerHTML='<div class="empty">🛒<h3>Your cart is empty</h3><p>Find something good to read.</p><button onclick="showPage(\'catalogue\')">Browse books</button></div>';summary.classList.add("hidden");return}el.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Book</th><th>Price</th><th>Quantity</th><th>Amount</th><th></th></tr></thead><tbody>${items.map(([code,q])=>{let b=getBook(code);return `<tr><td>${esc(b.title)}<div class="tiny muted">${esc(b.author)}</div></td><td>${money(b.price)}</td><td><input class="qty" type="number" min="1" max="${b.stock}" value="${q}" onchange="changeQty('${code}',this.value)"></td><td>${money(b.price*q)}</td><td><button class="danger small" onclick="removeFromCart('${code}')">Remove</button></td></tr>`}).join("")}</tbody></table></div>`;let sub=items.reduce((s,[c,q])=>s+getBook(c).price*q,0),delivery=sub>=999?0:49;summary.classList.remove("hidden");document.getElementById("cartSubtotal").textContent=money(sub);document.getElementById("cartDelivery").textContent=delivery?money(delivery):"FREE";document.getElementById("cartTotal").textContent=money(sub+delivery)}
+function cartTotals(){let sub=Object.entries(cart).reduce((s,[c,q])=>s+(getBook(c)?.price||0)*q,0);return{sub,delivery:sub===0||sub>=999?0:49,total:sub+(sub===0||sub>=999?0:49)}}
+function renderCheckout(){if(!Object.keys(cart).length){showPage("cart");return}let t=cartTotals();document.getElementById("checkoutSummary").innerHTML=Object.entries(cart).filter(([c,q])=>getBook(c)&&q>0).map(([c,q])=>`<div class="total-line"><span>${esc(getBook(c).title)} × ${q}</span><b>${money(getBook(c).price*q)}</b></div>`).join("")+`<div class="total-line"><span>Subtotal</span><b>${money(t.sub)}</b></div><div class="total-line"><span>Delivery</span><b>${t.delivery?money(t.delivery):"FREE"}</b></div><div class="total-line grand"><span>Total</span><b>${money(t.total)}</b></div>`;document.getElementById("coName").value=currentUser.name;document.getElementById("coEmail").value=currentUser.email}
+function placeOrder(e){e.preventDefault();if(!Object.keys(cart).length){showPage("cart");return}for(let [code,q] of Object.entries(cart)){let b=getBook(code);if(!b||q<1||q>b.stock){alert("Some book quantities are no longer available. Please check your cart.");showPage("cart");return}}let t=cartTotals(),items=Object.entries(cart).map(([code,qty])=>{let b=getBook(code);return{code,title:b.title,author:b.author,price:b.price,qty,amount:b.price*qty}});let today=new Date(),dispatch=new Date(today),delivery=new Date(today);dispatch.setDate(today.getDate()+2);delivery.setDate(today.getDate()+5);let order={id:"PT"+Date.now().toString().slice(-8),username:currentUser.username,name:document.getElementById("coName").value.trim(),phone:document.getElementById("coPhone").value.trim(),email:document.getElementById("coEmail").value.trim(),address:document.getElementById("coAddress").value.trim()+", "+document.getElementById("coCity").value.trim()+", "+document.getElementById("coState").value.trim()+" - "+document.getElementById("coPin").value.trim(),payment:"Cash on Delivery",items,total:t.total,dispatch:dispatch.toLocaleDateString("en-IN"),delivery:delivery.toLocaleDateString("en-IN"),status:"Order placed",date:today.toLocaleDateString("en-IN")};items.forEach(i=>{let b=getBook(i.code);b.stock-=i.qty});orders.unshift(order);save("pt_orders",orders);save("pt_books",books);lastOrder=order;cart={};save("pt_cart",cart);document.getElementById("confirmationDetails").innerHTML=`<p><b>Order ID:</b> ${esc(order.id)}</p><p><b>Customer:</b> ${esc(order.name)}</p><p><b>Mobile:</b> ${esc(order.phone)}</p><p><b>Email:</b> ${esc(order.email)}</p><p><b>Address:</b> ${esc(order.address)}</p><p><b>Payment:</b> ${order.payment}</p><p><b>Estimated dispatch:</b> ${order.dispatch}</p><p><b>Estimated delivery:</b> ${order.delivery}</p>`;document.getElementById("confirmationItems").innerHTML=items.map(i=>`<tr><td>${esc(i.title)}</td><td>${i.qty}</td><td>${money(i.amount)}</td></tr>`).join("");document.getElementById("confirmationTotal").textContent="Total paid on delivery: "+money(order.total);updateCounts();showPage("confirmation")}
+function renderWishlist(){let arr=wishlist.map(getBook).filter(Boolean);document.getElementById("wishlistGrid").innerHTML=arr.map(bookCard).join("");document.getElementById("wishlistEmpty").classList.toggle("hidden",arr.length>0);loadBookCovers()}
+function renderOrders(){let arr=ownedOrders();document.getElementById("ordersContents").innerHTML=arr.length?arr.map(o=>`<div class="panel"><div class="section-head"><div><h3>Order ${esc(o.id)}</h3><span class="badge">${esc(o.status)}</span></div><b>${money(o.total)}</b></div><p class="tiny muted">Placed on ${esc(o.date)} · Estimated delivery ${esc(o.delivery)}</p><ul>${o.items.map(i=>`<li>${esc(i.title)} × ${i.qty} — ${money(i.amount)}</li>`).join("")}</ul><p><b>Delivery address:</b> ${esc(o.address)}</p><button class="secondary small" onclick="printSavedOrder('${esc(o.id)}')">Print receipt</button></div>`).join(""):'<div class="panel empty">You have not placed any orders yet.</div>'}
+function printSavedOrder(id){let o=orders.find(x=>x.id===id&&x.username===currentUser.username);if(!o)return;lastOrder=o;let w=window.open("","_blank");if(!w){alert("Please allow pop-ups to print the receipt.");return}w.document.write(`<html><head><title>Receipt ${esc(o.id)}</title></head><body style="font-family:Arial;padding:30px"><h1>PageTurner — Order Receipt</h1><p>Order ID: ${esc(o.id)}</p><p>Name: ${esc(o.name)}</p><p>Address: ${esc(o.address)}</p><p>Payment: Cash on Delivery</p><hr>${o.items.map(i=>`<p>${esc(i.title)} × ${i.qty} — ${money(i.amount)}</p>`).join("")}<h2>Total: ${money(o.total)}</h2><p>Estimated delivery: ${esc(o.delivery)}</p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function saveProfile(e){e.preventDefault();let name=document.getElementById("profileName").value.trim(),email=document.getElementById("profileEmail").value.trim();currentUser.name=name;currentUser.email=email;if(!currentUser.isAdmin){users=users.map(u=>u.username===currentUser.username?{...u,name,email}:u);save("pt_users",users)}document.getElementById("profileMsg").className="message";document.getElementById("profileMsg").textContent="Profile updated."}
+
+function bookDetails(code) {
+  const b = getBook(code);
+  if (!b) return;
+
+  const modalBody = document.getElementById("bookModalBody");
+
+  modalBody.innerHTML = `
+    <div class="book-detail-layout">
+      <div class="detail-cover">
+        <img id="detailBookCover"
+             alt="Cover of ${esc(b.title)}"
+             style="width:100%;max-width:220px;height:300px;
+                    object-fit:contain;display:none;margin:auto;">
+
+        <div id="detailCoverFallback"
+             style="font-size:70px;text-align:center;padding:40px;">
+          📚
+        </div>
+      </div>
+
+      <div class="detail-info">
+        <span class="badge">${esc(b.category)}</span>
+        <h2>${esc(b.title)}</h2>
+        <p class="muted">by ${esc(b.author)}</p>
+        <h3 class="price">${money(b.price)}</h3>
+        <p>${esc(b.description)}</p>
+        <p><b>Availability:</b>
+          ${b.stock > 0 ? b.stock + " in stock" : "Out of stock"}
+        </p>
+        <button onclick="addToCart('${esc(b.code)}')"
+          ${b.stock < 1 ? "disabled" : ""}>Add to cart</button>
+        <button class="secondary"
+          onclick="toggleWish('${esc(b.code)}')">♡ Wishlist</button>
+      </div>
+    </div>
+  `;
+
+  document.getElementById("bookModal").classList.remove("hidden");
+
+  const coverSlot = document.querySelector(
+    `.cover[data-cover-code="${b.code}"]`
+  );
+  const coverImage = coverSlot?.querySelector("img");
+  const detailImage = document.getElementById("detailBookCover");
+  const fallback = document.getElementById("detailCoverFallback");
+
+  function showDetailCover(url) {
+    if (!url) return;
+
+    detailImage.onload = () => {
+      detailImage.style.display = "block";
+      fallback.style.display = "none";
+    };
+
+    detailImage.onerror = () => {
+      detailImage.style.display = "none";
+      fallback.style.display = "block";
+    };
+
+    detailImage.src = url;
+  }
+
+  if (coverImage && coverImage.src) {
+    showDetailCover(coverImage.src);
+  } else if (coverCache[b.code]) {
+    showDetailCover(coverCache[b.code]);
+  } else {
+    const url =
+      "https://covers.openlibrary.org/b/title/" +
+      encodeURIComponent(b.title) + "-M.jpg?default=false";
+
+    showDetailCover(url);
+  }
+}
+
+function closeBookModal(){document.getElementById("bookModal").classList.add("hidden")}
+function renderFeatured(){document.getElementById("featuredGrid").innerHTML=books.filter(b=>["B111","B101","B117","B127","B141"].includes(b.code)).map(bookCard).join("")}
+function renderAdminBooks(){document.getElementById("adminBookTable").innerHTML=`<table><thead><tr><th>Code</th><th>Title</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead><tbody>${books.map(b=>`<tr><td>${esc(b.code)}</td><td>${esc(b.title)}</td><td><input class="qty" id="price-${esc(b.code)}" type="number" min="1" value="${b.price}"></td><td><input class="qty" id="stock-${esc(b.code)}" type="number" min="0" value="${b.stock}"></td><td><button class="small" onclick="saveBookEdit('${esc(b.code)}')">Save</button> <button class="danger small" onclick="deleteBook('${esc(b.code)}')">Delete</button></td></tr>`).join("")}</tbody></table>`;document.getElementById("adminOrders").innerHTML=orders.length?orders.map(o=>`<div class="panel"><b>${esc(o.id)}</b> · ${esc(o.username)} · ${money(o.total)} · ${esc(o.status)}</div>`).join(""):'<p>No orders yet.</p>'}
+function adminTab(which,btn){document.getElementById("adminBooks").classList.toggle("hidden",which!=="books");document.getElementById("adminOrders").classList.toggle("hidden",which!=="orders");document.querySelectorAll(".admin-tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
+function addBook(e){e.preventDefault();let title=document.getElementById("newTitle").value.trim(),author=document.getElementById("newAuthor").value.trim(),category=document.getElementById("newCategory").value,price=Number(document.getElementById("newPrice").value),stock=Number(document.getElementById("newStock").value);if(price<1||stock<0)return;let next=101;while(books.some(b=>b.code==="B"+next))next++;books.push({code:"B"+next,title,author,category,price,stock,emoji:"📘",description:"A new title added to the PageTurner catalogue."});save("pt_books",books);renderAdminBooks();renderCatalogue();renderFeatured();document.getElementById("newTitle").value="";document.getElementById("newAuthor").value="";document.getElementById("newPrice").value="";document.getElementById("newStock").value="10";alert("Book added successfully.")}
+function saveBookEdit(code){let b=getBook(code);if(!b)return;b.price=Math.max(1,Number(document.getElementById("price-"+code).value)||1);b.stock=Math.max(0,Number(document.getElementById("stock-"+code).value)||0);save("pt_books",books);renderAdminBooks();renderCatalogue();renderFeatured();alert("Book details updated.")}
+function deleteBook(code){if(!confirm("Delete this book from the catalogue?"))return;books=books.filter(b=>b.code!==code);delete cart[code];wishlist=wishlist.filter(x=>x!==code);save("pt_books",books);save("pt_cart",cart);save("pt_wishlist",wishlist);renderAdminBooks();renderCatalogue();renderFeatured();updateCounts()}
+function renderAll(){document.getElementById("categoryFilter").innerHTML='<option value="">All categories</option>'+CATEGORIES.map(c=>`<option>${esc(c)}</option>`).join("");document.getElementById("newCategory").innerHTML=CATEGORIES.map(c=>`<option>${esc(c)}</option>`).join("");document.getElementById("statBooks").textContent=books.length;document.getElementById("statCategories").textContent=CATEGORIES.length;renderFeatured();renderCatalogue();renderWishlist();updateCounts()}
+function init(){let stored=load("pt_books",null);if(stored&&Array.isArray(stored)&&stored.length)books=stored;else save("pt_books",books);if(!users.some(u=>u.username==="admin")){}makeCaptcha("signup");makeCaptcha("login");setAuthMode("signup");}
+init();
+</script>
+</body>
+</html>
